@@ -12,7 +12,7 @@ It returns the ID and IP Address of your bridge.
 (discover-bridge)
 
 > {:id "001788fffe29d301", :internalipaddress "192.168.2.103"}
-``
+```
 
 ### Request Username
 
