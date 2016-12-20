@@ -67,7 +67,7 @@ Lets you query overall information about all installed Philips Hue lights
                :colormode "ct", 
                :reachable true}, 
        :type "Color temperature light", 
-       :name "Stehlampe", 
+       :name "Ceiling Lamp", 
        :modelid "LTW001", 
        :manufacturername "Ceiling Lamp", 
        :uniqueid "00:27:12:31:10:38:7d:22-0a", 
@@ -112,8 +112,6 @@ This enables you to control the hue lights. Unfortunately, right now I only own 
 > ({:success {:/lights/1/state/on true}} 
    {:success {:/lights/1/state/ct 153}})
 ```
-
-### Request 
 
 ## License
 Distributed under the Eclipse Public License either version 1.0 or (at
