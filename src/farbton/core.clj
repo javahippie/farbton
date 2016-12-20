@@ -46,3 +46,26 @@
                               :content-type :json
                               :as :json})]
     (:body response)))
+
+
+(defn switch-all-on
+  "Switches all available lamps on"
+  [username bridge]
+  (let [lights (request-lights username bridge)
+        all-light-ids (map #(name (first %)) lights)]
+    (pmap #(change-light-state username 
+                              bridge 
+                              % 
+                              {:on true}) 
+         all-light-ids)))
+
+(defn switch-all-off
+  "Switches all available lamps off"
+  [username bridge]
+  (let  [lights (request-lights username bridge)
+        all-light-ids (map #(name (first %)) lights)]
+    (pmap #(change-light-state username
+                              bridge
+                              %
+                              {:on false})
+         all-light-ids)))

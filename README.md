@@ -113,6 +113,34 @@ This enables you to control the hue lights. Unfortunately, right now I only own 
    {:success {:/lights/1/state/ct 153}})
 ```
 
+### Broadcast: Turn all lights on
+
+Broadcasts the "Turn on light" command to all lights. This is more of a showcase for hiding the complexity of the API and will likely be refactored in future.
+
+```clojure
+(switch-all-on username bridge)
+
+> (({:success {:/lights/1/state/on true}}) 
+   ({:success {:/lights/2/state/on true}}) 
+   ({:success {:/lights/3/state/on true}}) 
+   ({:success {:/lights/4/state/on true}}) 
+   ({:success {:/lights/5/state/on true}}))
+```
+
+### Broadcast: Turn all lights off
+
+Broadcasts the "Turn off light" command to all lights. This is more of a showcase for hiding the complexity of the  API and will likely be refactored in future.
+
+```clojure
+(switch-all-off username bridge)
+
+> (({:success {:/lights/1/state/on false}}) 
+   ({:success {:/lights/2/state/on false}}) 
+   ({:success {:/lights/3/state/on false}}) 
+   ({:success {:/lights/4/state/on false}}) 
+   ({:success {:/lights/5/state/on false}}))
+```
+
 ## License
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
