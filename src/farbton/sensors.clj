@@ -79,6 +79,7 @@
 
 (defn delete-sensor
   "Deletes a given sensor. Use carefully."
+  [username {ip-address :internalipaddress} sensor-id]
   (:body (client/delete (build-uri username
                                    ip-address
                                    sensor-id))))
