@@ -49,4 +49,4 @@
                              {:form-params params
                               :content-type :json
                               :as :json})]
-    (:body response)))
+    (first (:body response))))
