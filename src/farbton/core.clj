@@ -1,10 +1,6 @@
 (ns farbton.core
   (:require [clj-http.client :as client]))
 
-(def bridge {:id "001788fffe29d301" :internalipaddress "192.168.2.103"})
-
-(def username "obGUmZQtMrymKBn425RcxuvECRCky8FB4tEWeTx9")
-
 (defn discover-bridge
   "Tries to find a bridge in the local network with Philips UPnP tool. Return format is {:id xxxxx :internalipaddress xxxxx}"
   []
@@ -49,4 +45,4 @@
                              {:form-params params
                               :content-type :json
                               :as :json})]
-    (first (:body response))))
+    (:body response)))
