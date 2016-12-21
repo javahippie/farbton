@@ -1,5 +1,7 @@
 # farbton
 
+[![Build Status](https://travis-ci.org/javahippie/farbton.svg?branch=master)](https://travis-ci.org/javahippie/farbton)
+
 This is a Clojure library which is wrapping the Philips Hue REST API. It enables you to interact with the lights in your home.
 
 ## Usage
