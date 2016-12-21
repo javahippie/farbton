@@ -1,5 +1,7 @@
 # farbton
 
+[![Build Status](https://travis-ci.org/javahippie/farbton.svg?branch=master)](https://travis-ci.org/javahippie/farbton)
+
 This is a Clojure library which is wrapping the Philips Hue REST API. It enables you to interact with the lights in your home.
 
 ## Usage
@@ -9,7 +11,7 @@ This is making use of the Philips UPnP tool and requires an internet connection 
 It returns the ID and IP Address of your bridge.
 
 ```clojure
-(discover-bridge)
+(farbton.config/discover-bridge)
 
 > {:id "001788fffe29d301", 
    :internalipaddress "192.168.2.103"}
@@ -20,7 +22,7 @@ It returns the ID and IP Address of your bridge.
 Before making any calls to the API you need to ask the bridge for a username. Initially you can achieve this with the following call. Parameters are the bridge information from the `(discover-bridge)` call and an identifier for your device.
 
 ```clojure
-(request-username bridge 
+(farbton.config/create-user bridge 
                   device-name)
 
 
@@ -39,7 +41,7 @@ Before making this call, you have to ask the user to press the link button, else
 Enables you to query information about your Hue system, will generate a whole lot of data.
 
 ```clojure
-(request-stats username 
+(farbton.config/request-stats username 
                bridge)
 
 >[:lights {:1 {:state {:on true, ...}}}, 
@@ -57,7 +59,7 @@ Enables you to query information about your Hue system, will generate a whole lo
 Lets you query overall information about all installed Philips Hue lights
 
 ```clojure
-(request-lights username 
+(farbton.lights/request-lights username 
                 bridge)
 
 > {:1 {:state {:on true, 
@@ -80,7 +82,7 @@ Lets you query overall information about all installed Philips Hue lights
 Lets you query detailed information about one Phlips Hue light
 
 ```clojure
-(request-light username 
+(farbton.lights/request-light username 
                bridge 
                "1")
 
@@ -103,7 +105,7 @@ Lets you query detailed information about one Phlips Hue light
 This enables you to control the hue lights. Unfortunately, right now I only own Philips Hue Ambience lights, so I can not yet test everything in the full color spectrum. This is a very basic method call, it will just forward the properties directly to the API. Creating more simple wrappers for color selection is planned
 
 ```clojure
-(change-light-state username 
+(farbton.lights/change-light-state username 
                     bridge 
                     "1" 
                     {:on true 
@@ -111,34 +113,6 @@ This enables you to control the hue lights. Unfortunately, right now I only own 
 
 > ({:success {:/lights/1/state/on true}} 
    {:success {:/lights/1/state/ct 153}})
-```
-
-### Broadcast: Turn all lights on
-
-Broadcasts the "Turn on light" command to all lights. This is more of a showcase for hiding the complexity of the API and will likely be refactored in future.
-
-```clojure
-(switch-all-on username bridge)
-
-> (({:success {:/lights/1/state/on true}}) 
-   ({:success {:/lights/2/state/on true}}) 
-   ({:success {:/lights/3/state/on true}}) 
-   ({:success {:/lights/4/state/on true}}) 
-   ({:success {:/lights/5/state/on true}}))
-```
-
-### Broadcast: Turn all lights off
-
-Broadcasts the "Turn off light" command to all lights. This is more of a showcase for hiding the complexity of the  API and will likely be refactored in future.
-
-```clojure
-(switch-all-off username bridge)
-
-> (({:success {:/lights/1/state/on false}}) 
-   ({:success {:/lights/2/state/on false}}) 
-   ({:success {:/lights/3/state/on false}}) 
-   ({:success {:/lights/4/state/on false}}) 
-   ({:success {:/lights/5/state/on false}}))
 ```
 
 ## License
